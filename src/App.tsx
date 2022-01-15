@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Field from "./components/Field";
+import Keyboard from "./components/Keyboard";
+import {store} from "./store";
+import {useActions} from "./hooks/useAction";
+import {verifyWord} from "./store/redusers/board";
+
 
 function App() {
+  const {setWord, setSolution} = useActions()
+
+  if (store.getState().board.solution === '') {
+    setSolution('арбуз')
+  }
+  setWord(verifyWord('вагон'))
+  setWord(verifyWord('спирт'))
+  setWord(verifyWord('хмель'))
+  setWord(verifyWord('рубка'))
+  setWord(verifyWord('арбуз'))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Field/>
+      <Keyboard/>
     </div>
   );
 }

@@ -1,38 +1,159 @@
+* {
+    margin: 0 0 0 0;
+    background-color: rgb(18, 18, 19);
+    height: 100%;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
 .App {
-  text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Field-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Field {
+    box-sizing: border-box;
+    column-gap: 5px;
+    display: grid;
+    font-size: 16px;
+    grid-template-rows: 62.5px 62.5px 62.5px 62.5px 62.5px 62.5px;
+    height: 420px;
+    padding: 10px;
+    row-gap: 5px;
+    width: 350px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.WordRow {
+    column-gap: 5px;
+    display: grid;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    grid-template-columns: 62px 62px 62px 62px 62px;
+    height: 62px;
+    row-gap: 5px;
+    width: 330px;
 }
 
-.App-link {
-  color: #61dafb;
+.LetterCell {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: #d7dadc;
+    text-transform: uppercase;
+    user-select: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.LetterCell[data-state='empty'] {
+    border: 2px solid #3a3a3c;
+}
+
+.LetterCell[data-state='tbd'] {
+    background-color: #121213;
+    border: 2px solid #565758;;
+    color: #d7dadc;
+}
+
+.LetterCell[data-state='correct'] {
+    background-color: #538d4e;
+}
+
+.LetterCell[data-state='present'] {
+    background-color: #b59f3b;
+}
+
+.LetterCell[data-state='missing'] {
+    background-color: #3a3a3c;
+}
+
+.keyboard {
+    margin: 0 8px;
+    user-select: none;
+    height: 350px;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    margin: 0 auto 8px;
+    /* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
+    touch-action: manipulation;
+    height: auto;
+}
+
+button {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    margin: 0 6px 0 0;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: #818384;
+    color: #d7dadc;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.fade {
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+button:last-of-type {
+    margin: 0;
+}
+
+.half {
+    flex: 0.5;
+}
+
+.one {
+    flex: 1;
+}
+
+.one-and-a-half {
+    flex: 1.5;
+    font-size: 12px;
+}
+
+.two {
+    flex: 2;
+}
+
+button[data-state='correct'] {
+    background-color: #538d4e;
+}
+
+button[data-state='present'] {
+    background-color: #b59f3b;
+}
+
+button[data-state='missing'] {
+    background-color: #3a3a3c;
 }
