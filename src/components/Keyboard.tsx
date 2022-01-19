@@ -5,10 +5,18 @@ import {store} from "../store";
 
 const keys1 = ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ']
 const keys2 = ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э']
-const keys3 = ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'з']
+const keys3 = ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
 
 const Keyboard = () => {
   const {setWord, setLetter, clearLetter} = useActions()
+  function enter(){
+    if (store.getState().board.words.length<5){
+      setWord(verifyWord(store.getState().board.currentWord.join('')))
+    }
+    else {
+      setWord(verifyWord('арбуз'))
+    }
+  }
 
   return (
     <div className="keyboard">
@@ -31,7 +39,7 @@ const Keyboard = () => {
         <div className="spacer one"/>
       </div>
       <div className="row">
-        <button data-key='↵' className='one-and-a-half' onClick={() => setWord(verifyWord(store.getState().board.currentWord.join('')))}>
+        <button data-key='↵' className='one-and-a-half' onClick={() => enter()}>
           enter
         </button>
         {keys3.map((key: string, index) =>
