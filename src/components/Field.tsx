@@ -1,19 +1,25 @@
 import React from 'react';
 import WordRow from "./WordRow";
+import {useTypedSelector} from "../hooks/useTypedSelector";
 import {store} from "../store";
+import CurrentWordRow from "./CurrentWordRow";
 
 function Field() {
-  const words = store.getState().board.words.slice(0, 5)
+  const {words} = useTypedSelector(state => state.board);
+  let currentWord = store.getState().board.currentWord.concat('     '.split('')).slice(0,5)
+
   let empty = []
-  for (let i = 0; i < 6 - words.length; i++) {
+  for (let i = 0; i < 5 - words.length; i++) {
     empty.push(undefined)
   }
+
   return (
     <div className="Field-container">
       <div className="Field">
-        {words.map((value, index) =>
+        {words.slice(0,5).map((value, index) =>
           <WordRow word={value} key={index}/>
         )}
+        <CurrentWordRow word={currentWord}/>
         {empty.map((value, index) =>
           <WordRow word={value} key={index}/>
         )}

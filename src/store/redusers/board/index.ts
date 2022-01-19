@@ -6,6 +6,7 @@ import {IWord} from "../../../models/IWord";
 const initialState: IBoardState = {
   words: [],
   solution: '',
+  currentWord: []
 }
 
 export const boardReducer = (state = initialState, action: BoardAction): IBoardState => {
@@ -13,7 +14,11 @@ export const boardReducer = (state = initialState, action: BoardAction): IBoardS
     case BoardActionEnum.SET_SOLUTION:
       return {...state, solution: action.payload};
     case BoardActionEnum.SET_WORD:
-      return {...state, words: [...state.words, action.payload]};
+      return action.payload.letters.length===5?{...state, words: [...state.words, action.payload], currentWord:[]} : state;
+    case BoardActionEnum.SET_LETTER:
+      return state.currentWord.length<5 ? {...state, currentWord:[...state.currentWord, action.payload]} : state;
+    case BoardActionEnum.CLEAR_LETTER:
+      return state.currentWord.length!==0 ? {...state, currentWord:state.currentWord.slice(0,-1)} : state;
     default:
       return state;
   }

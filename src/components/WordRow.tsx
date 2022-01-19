@@ -7,6 +7,8 @@ interface WProp {
 }
 
 const WordRow = (prop: WProp) => {
+  const emptyWord = '     '.split('')
+
   return (
     prop.word !== undefined
       ? <div className="WordRow">
@@ -15,11 +17,9 @@ const WordRow = (prop: WProp) => {
         )}
       </div>
       : <div className="WordRow">
-        <LetterCell letter=" " status="empty"/>
-        <LetterCell letter=" " status="empty"/>
-        <LetterCell letter=" " status="empty"/>
-        <LetterCell letter=" " status="empty"/>
-        <LetterCell letter=" " status="empty"/>
+        {emptyWord.map((l: string, index: number) =>
+            <LetterCell letter=" " status="empty" key={index}/>
+        )}
       </div>
   );
 };

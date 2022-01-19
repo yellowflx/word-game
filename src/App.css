@@ -72,14 +72,42 @@
 
 .LetterCell[data-state='correct'] {
     background-color: #538d4e;
+    animation: flipIn 0.7s;
+    animation-timing-function: ease-in;
+    backface-visibility: hidden;
 }
 
 .LetterCell[data-state='present'] {
     background-color: #b59f3b;
+    animation: flipIn 0.7s;
+    animation-timing-function: ease-in;
+    backface-visibility: hidden;
 }
 
 .LetterCell[data-state='missing'] {
     background-color: #3a3a3c;
+}
+
+.LetterCell[data-state='new'] {
+    background-color: #3a3a3c;
+    animation: popUp 0.3s;
+}
+
+@keyframes popUp {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(0.8);
+    }
+}
+@keyframes flipIn {
+    0% {
+        transform: rotateX(-120deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
 }
 
 .keyboard {
@@ -156,4 +184,22 @@ button[data-state='present'] {
 
 button[data-state='missing'] {
     background-color: #3a3a3c;
+}
+
+
+.LetterCell[data-animation='pop'] {
+    animation-name: PopIn;
+    animation-duration: 100ms;
+}
+
+@keyframes PopIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
 }
