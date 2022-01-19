@@ -1,6 +1,6 @@
 import {
   BoardActionEnum,
-  ClearLetterAction,
+  ClearLetterAction, ResetStateAction,
   SetLetterAction,
   SetMissingAction,
   SetSolutionAction,
@@ -14,4 +14,5 @@ export const BoardActionCreator = {
   setLetter: (payload: string): SetLetterAction => ({type: BoardActionEnum.SET_LETTER, payload}),
   clearLetter: (): ClearLetterAction => ({type: BoardActionEnum.CLEAR_LETTER}),
   setMissingLetters: (payload:any[]): SetMissingAction => ({type: BoardActionEnum.SET_MISSING_LETTERS, payload}),
+  resetState: (): ResetStateAction => ({type: BoardActionEnum.RESET_STATE}),
 }

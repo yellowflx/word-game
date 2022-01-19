@@ -35,6 +35,9 @@ export const boardReducer = (state = initialState, action: BoardAction): IBoardS
     case BoardActionEnum.SET_MISSING_LETTERS:
       return {...state, missingLetters: [...state.missingLetters, ...action.payload]};
 
+    case BoardActionEnum.RESET_STATE:
+      return initialState
+
     default:
       return state;
   }

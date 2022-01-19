@@ -6,6 +6,7 @@ export enum BoardActionEnum {
   SET_LETTER = 'SET_LETTER',
   CLEAR_LETTER = 'CLEAR_LETTER',
   SET_MISSING_LETTERS = 'SET_MISSING_LETTERS',
+  RESET_STATE = 'RESET_STATE'
 }
 
 export interface SetWordAction {
@@ -31,10 +32,14 @@ export interface SetMissingAction{
   type: BoardActionEnum.SET_MISSING_LETTERS;
   payload: any[]
 }
+export interface ResetStateAction {
+  type: BoardActionEnum.RESET_STATE;
+}
 
 export type BoardAction =
   SetWordAction |
   SetLetterAction |
   ClearLetterAction |
   SetSolutionAction |
-  SetMissingAction
+  SetMissingAction |
+  ResetStateAction
