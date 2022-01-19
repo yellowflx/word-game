@@ -19,7 +19,7 @@ function App() {
   const {setSolution, resetState} = useActions()
 
   let date = new Date()
-  let number = parseFloat('0.'+((date.getFullYear() + (date.getMonth())) + date.getDate() ** (date.getHours())).toString().slice(5,9))
+  let number = parseFloat('0.'+((date.getFullYear() + (date.getMonth()+12)) + (date.getDate()+31) ** (date.getHours()+24)).toString().slice(5,9))
 
   useEffect(() => {
     let newSolution = wordsList[Math.floor(number*wordsList.length)].word
