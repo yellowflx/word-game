@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Field from "./components/Field";
 import Keyboard from "./components/Keyboard";
-import {store} from "./store";
 import {useActions} from "./hooks/useAction";
-import {verifyWord} from "./store/redusers/board";
+
+export const wordsList = require('./json/ruWords.json')
 
 function App() {
   console.log('App render')
-  const {setWord, setSolution} = useActions()
+  const {setSolution} = useActions()
 
-  if (store.getState().board.solution === '') {
-    setSolution('арбуз')
-  }
-  setWord(verifyWord('рубка'))
+  let date = new Date()
+  let number = parseFloat('0.'+((date.getFullYear() + (date.getMonth())) + date.getDate() ** (date.getHours())).toString().slice(5,9))
+
+  useEffect(() => {
+    setSolution(wordsList[Math.floor(number*wordsList.length)].word) // setSolution(data[Math.floor(Math.random()*data.length)].word)
+  }, [])
+
 
   return (
     <div className="App">

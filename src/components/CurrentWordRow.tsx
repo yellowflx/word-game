@@ -9,8 +9,8 @@ const CurrentWordRow = (prop: WProp) => {
   return (
     <div className="WordRow">
       {prop.word.map((l: string, index: number) =>
-        l===' '?
-          <LetterCell letter=" " status="empty" key={index}/>
+        l===' '
+          ?<LetterCell letter=" " status="empty" key={index}/>
           :<LetterCell letter={l} status={'new'} key={index}/>
       )}
     </div>

@@ -9,17 +9,17 @@ function Field() {
   let currentWord = store.getState().board.currentWord.concat('     '.split('')).slice(0,5)
 
   let empty = []
-  for (let i = 0; i < 5 - words.length; i++) {
+  for (let i = 0; i < 6 - words.length; i++) {
     empty.push(undefined)
   }
 
   return (
     <div className="Field-container">
       <div className="Field">
-        {words.slice(0,6).map((value, index) =>
+        {words.slice(0,7).map((value, index) =>
           <WordRow word={value} key={index}/>
         )}
-        {!(words[5]) ? <CurrentWordRow word={currentWord}/>: console.log('Попытки закончились')}
+        {!(words[6]) ? <CurrentWordRow word={currentWord}/>: console.log('Попытки закончились')}
         {empty.map((value, index) =>
           <WordRow word={value} key={index}/>
         )}
