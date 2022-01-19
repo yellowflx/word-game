@@ -16,10 +16,10 @@ function Field() {
   return (
     <div className="Field-container">
       <div className="Field">
-        {words.slice(0,5).map((value, index) =>
+        {words.slice(0,6).map((value, index) =>
           <WordRow word={value} key={index}/>
         )}
-        <CurrentWordRow word={currentWord}/>
+        {!(words[5]) ? <CurrentWordRow word={currentWord}/>: console.log('Попытки закончились')}
         {empty.map((value, index) =>
           <WordRow word={value} key={index}/>
         )}

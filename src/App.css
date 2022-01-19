@@ -37,7 +37,6 @@
 .WordRow {
     column-gap: 5px;
     display: grid;
-    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     grid-template-columns: 62px 62px 62px 62px 62px;
     height: 62px;
@@ -86,6 +85,7 @@
 
 .LetterCell[data-state='missing'] {
     background-color: #3a3a3c;
+    animation: shake 0.3s;
 }
 
 .LetterCell[data-state='new'] {
@@ -107,6 +107,15 @@
     }
     100% {
         transform: rotateX(0deg);
+    }
+}
+@keyframes shake {
+    25%, 75% {
+        transform: translate3d(4px, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-4px, 0, 0);
     }
 }
 
@@ -142,7 +151,6 @@ button {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 }
 
 button:focus {
