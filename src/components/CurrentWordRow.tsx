@@ -11,7 +11,7 @@ const CurrentWordRow = (prop: WProp) => {
       {prop.word.map((l: string, index: number) =>
         l===' '
           ?<LetterCell letter=" " status="empty" key={index}/>
-          :<LetterCell letter={l} status={'new'} key={index}/>
+          :<LetterCell letter={l} status="tbd"   key={index}/>
       )}
     </div>
   );

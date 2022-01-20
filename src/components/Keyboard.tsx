@@ -52,7 +52,6 @@ const Keyboard = () => {
   return (
     <div className="keyboard">
       <div className="row">
-        <div className="spacer half"/>
         {keys1.map((key: string, index) =>
           missingLetters.has(key)
             ? (<button data-key={key} key={index} data-state='missing' onClick={() => setLetter(key)}>
@@ -64,7 +63,6 @@ const Keyboard = () => {
               </button>
             )
         )}
-        <div className="spacer half"/>
       </div>
       <div className="row">
         <div className="spacer one"/>
@@ -97,13 +95,8 @@ const Keyboard = () => {
             )
         )}
         <button data-key='🠔' className='one-and-a-half' onClick={() => clearLetter()}>
-          <svg width="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-               style={{backgroundColor: '#818384'}}
-          >
-            <path
-              d="M20.3284 11.0001V13.0001L7.50011 13.0001L10.7426 16.2426L9.32842 17.6568L3.67157 12L9.32842 6.34314L10.7426 7.75735L7.49988 11.0001L20.3284 11.0001Z"
-              fill="currentColor"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 16 16" style={{backgroundColor: '#818384'}}>
+            <path d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
         </button>
       </div>
