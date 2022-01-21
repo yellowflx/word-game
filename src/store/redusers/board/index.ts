@@ -6,15 +6,16 @@ const initialState: IBoardState = {
   solution: '',
   currentWord: [],
   missingLetters: [],
+  status: 0
 }
 
 export const boardReducer = (state = initialState, action: BoardAction): IBoardState => {
   switch (action.type) {
+    case BoardActionEnum.RESET_STATE:
+      return initialState
+
     case BoardActionEnum.SET_SOLUTION:
       return {...state, solution: action.payload};
-
-    case BoardActionEnum.SET_WORD:
-      return action.payload.letters.length===5?{...state, words: [...state.words, action.payload], currentWord:[]} : state;
 
     case BoardActionEnum.SET_LETTER:
       if (state.currentWord.length < 5) {
@@ -32,11 +33,14 @@ export const boardReducer = (state = initialState, action: BoardAction): IBoardS
         return state;
       }
 
+    case BoardActionEnum.SET_WORD:
+      return action.payload.letters.length===5? {...state, words: [...state.words, action.payload], currentWord:[]} : state;
+
     case BoardActionEnum.SET_MISSING_LETTERS:
       return {...state, missingLetters: [...state.missingLetters, ...action.payload]};
 
-    case BoardActionEnum.RESET_STATE:
-      return initialState
+    case BoardActionEnum.SET_STATUS:
+      return action.payload<3? {...state, status: action.payload} : state;
 
     default:
       return state;

@@ -1,4 +1,4 @@
-const KEY = "redux";
+const KEY = "gameStatus";
 export function loadState() {
   try {
     const serializedState = localStorage.getItem(KEY);

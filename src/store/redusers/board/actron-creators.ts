@@ -3,16 +3,17 @@ import {
   ClearLetterAction, ResetStateAction,
   SetLetterAction,
   SetMissingAction,
-  SetSolutionAction,
+  SetSolutionAction, SetStatusAction,
   SetWordAction
 } from "./types";
 import {IWord} from "../../../models/IWord";
 
 export const BoardActionCreator = {
-  setWord: (payload: IWord): SetWordAction => ({type: BoardActionEnum.SET_WORD, payload}),
+  resetState: (): ResetStateAction => ({type: BoardActionEnum.RESET_STATE}),
   setSolution: (payload: string): SetSolutionAction => ({type: BoardActionEnum.SET_SOLUTION, payload}),
   setLetter: (payload: string): SetLetterAction => ({type: BoardActionEnum.SET_LETTER, payload}),
   clearLetter: (): ClearLetterAction => ({type: BoardActionEnum.CLEAR_LETTER}),
+  setWord: (payload: IWord): SetWordAction => ({type: BoardActionEnum.SET_WORD, payload}),
   setMissingLetters: (payload:any[]): SetMissingAction => ({type: BoardActionEnum.SET_MISSING_LETTERS, payload}),
-  resetState: (): ResetStateAction => ({type: BoardActionEnum.RESET_STATE}),
+  setStatus: (payload: number): SetStatusAction => ({type: BoardActionEnum.SET_STATUS, payload}),
 }

@@ -6,9 +6,10 @@ import {useActions} from "./hooks/useAction";
 import {store} from "./store";
 import { debounce } from "debounce";
 import {saveState} from "./store/browser-storage";
+import {useTypedSelector} from "./hooks/useTypedSelector";
+import Result from "./components/Result";
 
 export const wordsList = require('./json/ruWords.json')
-
 function App() {
   store.subscribe(
     debounce(() => {
@@ -18,6 +19,7 @@ function App() {
   console.log('App render')
   const {setSolution, resetState} = useActions()
 
+  let status = useTypedSelector(store => store.board.status)
   let date = new Date()
   let number = parseFloat('0.'+((date.getFullYear() + (date.getMonth()+12)) + (date.getDate()/4+31) ** (date.getHours()/4+1.5)).toString().slice(5,9))
 
@@ -27,13 +29,12 @@ function App() {
       resetState()
       setSolution(newSolution)
     }
-    // setSolution(newSolution) // setSolution(data[Math.floor(Math.random()*data.length)].word)
   }, [])
 
   return (
     <div className="App">
       <Field/>
-      <Keyboard/>
+      {status<1?<Keyboard/>:<Result status={status}/>}
     </div>
   );
 }

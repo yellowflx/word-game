@@ -5,4 +5,5 @@ export interface IBoardState {
   solution: string;
   currentWord: string[];
   missingLetters: any[];
+  status: number;
 }
