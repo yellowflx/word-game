@@ -8,7 +8,7 @@ export const rootReducer = combineReducers({
 })
 
 export const store = configureStore({
-  devTools: true,
+  devTools: false,
   reducer: rootReducer,
   // here we restore the previously persisted state
   preloadedState: loadState(),
