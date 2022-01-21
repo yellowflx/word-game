@@ -12,7 +12,7 @@ let tempArr: any[]
 
 const Keyboard = () => {
   const missingLetters = new Set(useTypedSelector(store => store.board.missingLetters))
-  const {setWord, setLetter, clearLetter, setMissingLetters, setStatus} = useActions()
+  const {setWord, setLetter, clearLetter, setMissingLetters, setStatus, addWin, addLose} = useActions()
 
   function verifyWord(input: string) {
     let arr = input.split('')
@@ -41,30 +41,41 @@ const Keyboard = () => {
 
     if (wordsList.some((item: { word: string }) => item.word === (currentWord))) {
       if (wordsCount < 6) {
-        if (solution===currentWord) setStatus(1)
+        if (solution===currentWord) {
+          addWin(wordsCount)
+          setStatus(1)
+        }
         tempArr = Array.from(verifyWord(currentWord).ml)
         setMissingLetters(tempArr)
         setWord(verifyWord(currentWord).word)
       } else {
-        solution===currentWord?setStatus(1):setStatus(2)
+        if (solution === currentWord) {
+          addWin(wordsCount)
+          setStatus(1)
+        } else {
+          addLose()
+          setStatus(2)
+        }
         setWord(verifyWord(store.getState().board.solution).word)
       }
     } else console.log('Такого слова нет в списке')
   }
 
-  document.onkeydown=(e)=> {
-    let key = e.key.toLowerCase()
-    let keys = keys1.concat(...keys2, ...keys3)
-    if (keys.includes(key)) setLetter(key)
-    else if (key==='enter') enter()
-    else if (key==='backspace') clearLetter()
+  document.onkeydown=(e) => {
+    if (store.getState().board.status===0){
+      let key = e.key.toLowerCase()
+      let keys = keys1.concat(...keys2, ...keys3)
+      if (keys.includes(key)) setLetter(key)
+      else if (key==='enter') enter()
+      else if (key==='backspace') clearLetter()
+    }
   }
 
   return (
     <div className="keyboard">
       <div className="row">
         {keys1.map((key: string, index) =>
-          <button accessKey={key} data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
@@ -73,7 +84,7 @@ const Keyboard = () => {
       <div className="row">
         <div className="spacer one"/>
         {keys2.map((key: string, index) =>
-          <button accessKey={key}  data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
@@ -85,7 +96,7 @@ const Keyboard = () => {
           enter
         </button>
         {keys3.map((key: string, index) =>
-          <button accessKey={key}  data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
