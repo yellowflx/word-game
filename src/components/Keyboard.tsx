@@ -52,7 +52,7 @@ const Keyboard = () => {
     } else console.log('Такого слова нет в списке')
   }
 
-  document.onkeydown=(e)=>{
+  document.onkeydown=(e)=> {
     let key = e.key.toLowerCase()
     let keys = keys1.concat(...keys2, ...keys3)
     if (keys.includes(key)) setLetter(key)
