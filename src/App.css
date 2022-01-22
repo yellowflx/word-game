@@ -3,6 +3,10 @@
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
+:root {
+    --toastify-color-dark: #3a3a3c;
+}
+
 body {
     background-color: rgb(18, 18, 19);
 }
@@ -286,3 +290,4 @@ h1, h2 {
     display: flex;
     justify-content: flex-end;
 }
+

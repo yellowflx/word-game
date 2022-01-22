@@ -16,19 +16,16 @@ date.setSeconds(0)
 const Result = (prop: WProp) => {
   const renderer: CountdownRendererFn = ({minutes, seconds, completed}) => {
     if (completed) {
-      // Render a complete state
       return (
         <div className="Countdown">
-          Новое слово уже открылось, обновите страницу
+          Новое слово уже открылось, <a href={'/'}>обновите страницу</a>
         </div>
       )
     } else {
-      // Render a countdown
       return (
         <div className="Countdown">
           Новое слово через {zeroPad(minutes)}:{zeroPad(seconds)}
         </div>
-
       );
     }
   };

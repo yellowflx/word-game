@@ -3,7 +3,7 @@ import {useActions} from "../hooks/useAction";
 import {store} from "../store";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {IWord} from "../models/IWord";
-import {wordsList} from "../App";
+import {notify, wordsList} from "../App";
 
 const keys1 = ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ']
 const keys2 = ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э']
@@ -58,7 +58,7 @@ const Keyboard = () => {
         }
         setWord(verifyWord(store.getState().board.solution).word)
       }
-    } else console.log('Такого слова нет в списке')
+    } else currentWord.length === 5 ? notify('Такого слова нет в списке') : notify('Введите слово из 5 букв')
   }
 
   document.onkeydown = (e) => {

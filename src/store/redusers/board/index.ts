@@ -1,5 +1,6 @@
 import {IBoardState} from "../../../models/IBoardState";
 import {BoardAction, BoardActionEnum} from "./types";
+import {notify} from "../../../App";
 
 const initialState: IBoardState = {
   words: [],
@@ -21,7 +22,7 @@ export const boardReducer = (state = initialState, action: BoardAction): IBoardS
       if (state.currentWord.length < 5) {
         return {...state, currentWord: [...state.currentWord, action.payload]};
       } else {
-        console.log('Максимум 5 букв')
+        notify('Максимум 5 букв')
         return state;
       }
 
@@ -29,18 +30,22 @@ export const boardReducer = (state = initialState, action: BoardAction): IBoardS
       if (state.currentWord.length !== 0) {
         return {...state, currentWord: state.currentWord.slice(0, -1)};
       } else {
-        console.log('Нечего удалять')
+        notify('Нечего удалять')
         return state;
       }
 
     case BoardActionEnum.SET_WORD:
-      return action.payload.letters.length===5? {...state, words: [...state.words, action.payload], currentWord:[]} : state;
+      return action.payload.letters.length === 5 ? {
+        ...state,
+        words: [...state.words, action.payload],
+        currentWord: []
+      } : state;
 
     case BoardActionEnum.SET_MISSING_LETTERS:
       return {...state, missingLetters: [...state.missingLetters, ...action.payload]};
 
     case BoardActionEnum.SET_STATUS:
-      return action.payload<3? {...state, status: action.payload} : state;
+      return action.payload < 3 ? {...state, status: action.payload} : state;
 
     default:
       return state;
