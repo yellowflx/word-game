@@ -1,7 +1,10 @@
 * {
     margin: 0 0 0 0;
-    background-color: rgb(18, 18, 19);
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: rgb(18, 18, 19);
 }
 
 .App {
@@ -20,7 +23,7 @@
     overflow: hidden;
 }
 
-.Field{
+.Field {
     box-sizing: border-box;
     display: grid;
     padding: 10px;
@@ -79,13 +82,14 @@
 }
 
 @keyframes popUp {
-    0%{
+    0% {
         transform: scale(1);
     }
-    50%{
+    50% {
         transform: scale(0.8);
     }
 }
+
 @keyframes flipIn {
     0% {
         transform: rotateX(-120deg);
@@ -94,6 +98,7 @@
         transform: rotateX(0deg);
     }
 }
+
 @keyframes shake {
     25%, 75% {
         transform: translate3d(4px, 0, 0);
@@ -117,7 +122,6 @@
     display: flex;
     width: 100%;
     margin: 0 auto 8px;
-    /* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
     touch-action: manipulation;
     height: auto;
 }
@@ -164,4 +168,121 @@ button[data-state='present'] {
 
 button[data-state='missing'] {
     background-color: #3a3a3c;
+}
+
+.Countdown {
+    color: white;
+    text-align: center;
+    font-size: 3vh;
+}
+
+h1, h2 {
+    font-size: 3vh;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1vh;
+    display: contents;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(0);
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+}
+
+.modal-wrapper {
+    animation: opacity 2s;
+    background-color: rgba(18, 18, 18, 0.7);
+    position: fixed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Stats {
+    animation: pop 2s;
+    color: white;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15vh;
+    padding: 1vh 1vh 1.5vh 1vh;
+    border-radius: 8px;
+    background-color: rgba(91, 91, 91, 0.8);
+}
+
+.stat {
+    width: 20%;
+}
+
+.numbers {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1vh;
+}
+
+.value {
+    font-size: 4vh;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-variant-numeric: proportional-nums;
+}
+
+.label {
+    font-size: 1.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.attempts {
+    width: 80%;
+}
+
+.attempt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 4px;
+    font-size: 1.5vh;
+    line-height: 2vh;
+}
+
+.graph {
+    width: 100%;
+    padding-left: 4px;
+}
+
+.graph-bar {
+    padding-right: 1%;
+    height: 100%;
+    width: 5%;
+    position: relative;
+    background-color: #282828;
+    display: flex;
+    justify-content: flex-end;
 }

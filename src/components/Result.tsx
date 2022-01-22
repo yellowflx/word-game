@@ -1,4 +1,5 @@
 import React from 'react';
+import Countdown, {CountdownRendererFn, zeroPad} from "react-countdown";
 
 interface WProp {
   status: number;
@@ -7,20 +8,45 @@ interface WProp {
 const lose = ['п', 'о', 'р', 'а', 'ж', 'е', 'н', 'и', 'е']
 const win = ['п', 'о', 'б', 'е', 'д', 'а']
 
+let date = new Date()
+date.setHours(date.getHours() + 1)
+date.setMinutes(0)
+date.setSeconds(0)
+
 const Result = (prop: WProp) => {
+  const renderer: CountdownRendererFn = ({minutes, seconds, completed}) => {
+    if (completed) {
+      // Render a complete state
+      return (
+        <div className="Countdown">
+          Новое слово уже открылось, обновите страницу
+        </div>
+      )
+    } else {
+      // Render a countdown
+      return (
+        <div className="Countdown">
+          Новое слово через {zeroPad(minutes)}:{zeroPad(seconds)}
+        </div>
+
+      );
+    }
+  };
+
   switch (prop.status) {
     case 1:
       return (
         <div className="keyboard" style={{justifyContent: 'center'}}>
           <div className="row">
             <div className="spacer one-and-a-half"/>
-            {win.map((key: string, index) =>(
+            {win.map((key: string, index) => (
               <button data-key={key} key={index} style={{height: '7.4vh', fontSize: '4vh', backgroundColor: '#538d4e'}}>
                 {key}
               </button>
             ))}
             <div className="spacer one-and-a-half"/>
           </div>
+          <Countdown date={date} renderer={renderer}/>
         </div>
       )
     case 2:
@@ -33,9 +59,11 @@ const Result = (prop: WProp) => {
               </button>
             ))}
           </div>
+          <Countdown date={date} renderer={renderer}/>
         </div>
       )
-    default:return <div>Ошибка</div>
+    default:
+      return <div>Ошибка</div>
   }
 }
 

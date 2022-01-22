@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import {boardReducer} from "./redusers/board";
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import {loadState} from "./browser-storage";
 import {statsReducer} from "./redusers/stats";
 
@@ -10,7 +10,7 @@ export const rootReducer = combineReducers({
 })
 
 export const store = configureStore({
-  devTools: false,
+  devTools: true,
   reducer: rootReducer,
   // here we restore the previously persisted state
   preloadedState: loadState(),

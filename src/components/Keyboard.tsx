@@ -41,7 +41,7 @@ const Keyboard = () => {
 
     if (wordsList.some((item: { word: string }) => item.word === (currentWord))) {
       if (wordsCount < 6) {
-        if (solution===currentWord) {
+        if (solution === currentWord) {
           addWin(wordsCount)
           setStatus(1)
         }
@@ -61,13 +61,13 @@ const Keyboard = () => {
     } else console.log('Такого слова нет в списке')
   }
 
-  document.onkeydown=(e) => {
-    if (store.getState().board.status===0){
+  document.onkeydown = (e) => {
+    if (store.getState().board.status === 0) {
       let key = e.key.toLowerCase()
       let keys = keys1.concat(...keys2, ...keys3)
       if (keys.includes(key)) setLetter(key)
-      else if (key==='enter') enter()
-      else if (key==='backspace') clearLetter()
+      else if (key === 'enter') enter()
+      else if (key === 'backspace') clearLetter()
     }
   }
 
@@ -75,7 +75,8 @@ const Keyboard = () => {
     <div className="keyboard">
       <div className="row">
         {keys1.map((key: string, index) =>
-          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
+                  onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
@@ -84,7 +85,8 @@ const Keyboard = () => {
       <div className="row">
         <div className="spacer one"/>
         {keys2.map((key: string, index) =>
-          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
+                  onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
@@ -96,13 +98,16 @@ const Keyboard = () => {
           enter
         </button>
         {keys3.map((key: string, index) =>
-          <button data-key={key} key={index}  data-state={missingLetters.has(key)? "missing":""} onClick={() => setLetter(key)}>
+          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
+                  onClick={() => setLetter(key)}>
             {key}
           </button>
         )}
         <button data-key="🠔" className="one-and-a-half" onClick={() => clearLetter()}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 16 16" style={{backgroundColor: "#818384"}}>
-            <path d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 16 16"
+               style={{backgroundColor: "#818384"}}>
+            <path
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
         </button>
       </div>
