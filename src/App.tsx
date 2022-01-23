@@ -16,6 +16,7 @@ export const wordsList = require('./json/ruWords.json')
 
 export const notify = (text: string) => toast.warn(text, {
   theme: "dark",
+  toastId: text,
   transition: Slide
 });
 
