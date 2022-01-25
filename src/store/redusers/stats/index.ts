@@ -2,7 +2,13 @@ import {IStats} from "../../../models/IStats";
 import {StatsAction, StatsActionEnum} from "./types";
 
 const initialState: IStats = {
-  currentStreak: 0, gamesPlayed: 0, gamesWon: 0, gamesLost: 0, bestStreak: 0, attempts: [0, 0, 0, 0, 0, 0, 0]
+  currentStreak: 0,
+  gamesPlayed: 0,
+  gamesWon: 0,
+  gamesLost: 0,
+  bestStreak: 0,
+  attempts: [0, 0, 0, 0, 0, 0, 0],
+  hidden: true
 }
 
 export const statsReducer = (state = initialState, action: StatsAction): IStats => {
@@ -21,6 +27,9 @@ export const statsReducer = (state = initialState, action: StatsAction): IStats 
 
     case StatsActionEnum.ADD_LOSS:
       return {...state, gamesPlayed: state.gamesPlayed + 1, gamesLost: state.gamesLost + 1, currentStreak: 0};
+
+    case StatsActionEnum.TOGGLE_STATS:
+      return {...state, hidden: !state.hidden};
 
     default:
       return state;

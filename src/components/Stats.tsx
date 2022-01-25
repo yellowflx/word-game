@@ -1,18 +1,30 @@
 import React from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useAction";
 
 const Stats = () => {
+  const {toggleStats} = useActions()
   const {stats} = useTypedSelector(store => store)
   let oftenAttempt = Math.max(...stats.attempts, 1)
 
   return (
     <div className="modal-wrapper" onClick={(e) => {
       if ((e.target as HTMLInputElement).className === "modal-wrapper") {
-        (e.target as HTMLInputElement).style.display = "none"
+        toggleStats()
       }
     }}>
       <div className="Stats" style={{display: "flex"}}>
         <h1>Статистика</h1>
+        <div onClick={toggleStats} style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "flex-end",
+          height: 0,
+          cursor: "pointer",
+          top: "-4vh",
+          position: "relative"
+        }}>✖
+        </div>
         <div className="numbers">
           <div className="stat">
             <div className="value">{stats.gamesPlayed}</div>

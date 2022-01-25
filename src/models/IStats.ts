@@ -5,4 +5,5 @@ export interface IStats {
   gamesLost: number;
   bestStreak: number;
   attempts: number[];
+  hidden: boolean;
 }

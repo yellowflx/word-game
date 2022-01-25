@@ -12,7 +12,7 @@ let tempArr: any[]
 
 const Keyboard = () => {
   const missingLetters = new Set(useTypedSelector(store => store.board.missingLetters))
-  const {setWord, setLetter, clearLetter, setMissingLetters, setStatus, addWin, addLose} = useActions()
+  const {setWord, setLetter, clearLetter, setMissingLetters, setStatus, addWin, addLose, toggleStats} = useActions()
 
   function verifyWord(input: string) {
     let arr = input.split('')
@@ -44,6 +44,7 @@ const Keyboard = () => {
         if (solution === currentWord) {
           addWin(wordsCount)
           setStatus(1)
+          toggleStats()
         }
         tempArr = Array.from(verifyWord(currentWord).ml)
         setMissingLetters(tempArr)
@@ -52,9 +53,11 @@ const Keyboard = () => {
         if (solution === currentWord) {
           addWin(wordsCount)
           setStatus(1)
+          toggleStats()
         } else {
           addLose()
           setStatus(2)
+          toggleStats()
         }
         setWord(verifyWord(store.getState().board.solution).word)
       }

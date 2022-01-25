@@ -11,6 +11,7 @@ import {useTypedSelector} from "./hooks/useTypedSelector";
 import Result from "./components/Result";
 import Stats from "./components/Stats";
 import {Slide, toast, ToastContainer} from 'react-toastify';
+import Header from "./components/Header";
 
 export const wordsList = require('./json/ruWords.json')
 
@@ -21,9 +22,10 @@ export const notify = (text: string) => toast.warn(text, {
 });
 
 function App() {
-  const {setSolution, resetState} = useActions()
+  const {setSolution, resetState, toggleStats} = useActions()
 
   let status = useTypedSelector(store => store.board.status)
+  let stats = useTypedSelector(store => store.stats.hidden)
   let date = new Date()
   let number = parseFloat('0.' + ((date.getFullYear() + (date.getMonth() + 12)) + (date.getDate() / 4 + 31) ** (date.getHours() / 4 + 1.5)).toString().slice(5, 9))
 
@@ -35,6 +37,7 @@ function App() {
 
   useEffect(() => {
     let newSolution = wordsList[Math.floor(number * wordsList.length)].word
+    if (store.getState().board.status !== 0) toggleStats()
     if (newSolution !== store.getState().board.solution) {
       resetState()
       setSolution(newSolution)
@@ -43,12 +46,13 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
       <ToastContainer
         newestOnTop
         position="top-center"
         autoClose={2000}
       />
-      {status !== 0 ? <Stats/> : null}
+      {!stats ? <Stats/> : null}
       <Field/>
       {status < 1 ? <Keyboard/> : <Result status={status}/>}
     </div>
