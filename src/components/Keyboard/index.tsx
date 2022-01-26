@@ -1,16 +1,17 @@
 import React from 'react';
-import {useActions} from "../hooks/useAction";
-import {store} from "../store";
-import {useTypedSelector} from "../hooks/useTypedSelector";
-import {IWord} from "../models/IWord";
-import {notify, wordsList} from "../App";
+import {useActions} from "../../hooks/useAction";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {store} from "../../store";
+import {IWord} from "../../models/IWord";
+import {notify, wordsList} from "../../App";
+import {Key, KeyboardWrapper, Row, Spacer} from "./style";
 
 const keys1 = ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ']
 const keys2 = ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э']
 const keys3 = ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
 let tempArr: any[]
 
-const Keyboard = () => {
+export const Keyboard = () => {
   const missingLetters = new Set(useTypedSelector(store => store.board.missingLetters))
   const {setWord, setLetter, clearLetter, setMissingLetters, setStatus, addWin, addLose, toggleStats} = useActions()
 
@@ -75,47 +76,45 @@ const Keyboard = () => {
   }
 
   return (
-    <div className="keyboard">
-      <div className="row">
+    <KeyboardWrapper>
+      <Row>
         {keys1.map((key: string, index) =>
-          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
-                  onClick={() => setLetter(key)}>
+          <Key data-key={key} key={index} color={missingLetters.has(key) ? "#3a3a3c" : ""}
+               onClick={() => setLetter(key)}>
             {key}
-          </button>
+          </Key>
         )}
-      </div>
+      </Row>
 
-      <div className="row">
-        <div className="spacer one"/>
+      <Row>
+        <Spacer $width="0.586"/>
         {keys2.map((key: string, index) =>
-          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
-                  onClick={() => setLetter(key)}>
+          <Key data-key={key} key={index} color={missingLetters.has(key) ? "#3a3a3c" : ""}
+               onClick={() => setLetter(key)}>
             {key}
-          </button>
+          </Key>
         )}
-        <div className="spacer one"/>
-      </div>
+        <Spacer $width="0.586"/>
+      </Row>
 
-      <div className="row">
-        <button data-key="↵" className="one-and-a-half" onClick={() => enter()}>
+      <Row>
+        <Key data-key="enter" $flex="1.5" onClick={() => enter()}>
           enter
-        </button>
+        </Key>
         {keys3.map((key: string, index) =>
-          <button data-key={key} key={index} data-state={missingLetters.has(key) ? "missing" : ""}
-                  onClick={() => setLetter(key)}>
+          <Key data-key={key} key={index} $color={missingLetters.has(key) ? "#3a3a3c" : ""}
+               onClick={() => setLetter(key)}>
             {key}
-          </button>
+          </Key>
         )}
-        <button data-key="🠔" className="one-and-a-half" onClick={() => clearLetter()}>
+        <Key data-key="backspace" $flex="1.5" onClick={() => clearLetter()}>
           <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 16 16"
                style={{backgroundColor: "#818384"}}>
             <path
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
-        </button>
-      </div>
-    </div>
-  )
-}
-
-export default Keyboard
+        </Key>
+      </Row>
+    </KeyboardWrapper>
+  );
+};

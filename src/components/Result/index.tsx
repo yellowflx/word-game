@@ -1,7 +1,8 @@
 import React from 'react';
 import Countdown, {CountdownRendererFn, zeroPad} from "react-countdown";
+import {Letter, ResultWrapper, Row, Spacer} from './style';
 
-interface WProp {
+interface ResultProps {
   status: number;
 }
 
@@ -13,7 +14,7 @@ date.setHours(date.getHours() + 1)
 date.setMinutes(0)
 date.setSeconds(0)
 
-const Result = (prop: WProp) => {
+export const Result = (props: ResultProps) => {
   const renderer: CountdownRendererFn = ({minutes, seconds, completed}) => {
     if (completed) {
       return (
@@ -30,38 +31,36 @@ const Result = (prop: WProp) => {
     }
   };
 
-  switch (prop.status) {
+  switch (props.status) {
     case 1:
       return (
-        <div className="keyboard" style={{justifyContent: 'center'}}>
-          <div className="row">
-            <div className="spacer one-and-a-half"/>
+        <ResultWrapper>
+          <Row>
+            <Spacer/>
             {win.map((key: string, index) => (
-              <button data-key={key} key={index} style={{height: '7.4vh', fontSize: '4vh', backgroundColor: '#538d4e'}}>
+              <Letter key={index} $win>
                 {key}
-              </button>
+              </Letter>
             ))}
-            <div className="spacer one-and-a-half"/>
-          </div>
+            <Spacer/>
+          </Row>
           <Countdown date={date} renderer={renderer}/>
-        </div>
+        </ResultWrapper>
       )
     case 2:
       return (
-        <div className="keyboard" style={{justifyContent: 'center'}}>
-          <div className="row" style={{marginBottom: '3vh'}}>
+        <ResultWrapper>
+          <Row>
             {lose.map((key: string, index) => (
-              <button data-key={key} key={index} style={{height: '7.4vh', fontSize: '4vh', backgroundColor: '#c33333'}}>
+              <Letter key={index}>
                 {key}
-              </button>
+              </Letter>
             ))}
-          </div>
+          </Row>
           <Countdown date={date} renderer={renderer}/>
-        </div>
+        </ResultWrapper>
       )
     default:
       return <div>Ошибка</div>
   }
 }
-
-export default Result

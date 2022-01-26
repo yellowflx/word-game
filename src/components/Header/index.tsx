@@ -1,21 +1,14 @@
 import React from "react";
-import {useActions} from "../hooks/useAction";
+import {useActions} from "../../hooks/useAction";
+import {HeaderContent, HeaderWrapper } from "./style";
 
 export const Header = () => {
   const {toggleStats} = useActions()
   return (
-    <div className="Header-container"
-         style={{display: "flex", width: "100%", justifyContent: "center", paddingTop: "1vh"}}>
-      <div className="Header" style={{
-        display: "flex",
-        width: "100%",
-        justifyContent: "space-between",
-        maxWidth: "350px",
-        alignItems: "center",
-        fontWeight: "bold"
-      }}>
+    <HeaderWrapper>
+      <HeaderContent>
         <div>
-          <a href="https://github.com/YellowFLX/word-game" target="_blank" title="Исходный код (GitHub)">
+          <a href="https://github.com/YellowFLX/word-game" title="Исходный код (GitHub)" rel="noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207
                 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729
@@ -28,15 +21,13 @@ export const Header = () => {
             </svg>
           </a>
         </div>
-        <div style={{fontSize: "3vh"}}>WORD GAME</div>
-        <div className="ToggleStats" onClick={toggleStats} title="Статистика" style={{cursor: "pointer"}}>
+        <h1>WORD GAME</h1>
+        <div onClick={toggleStats} title="Статистика" style={{cursor: "pointer"}}>
           <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"></path>
+            <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/>
           </svg>
         </div>
-      </div>
-    </div>
+      </HeaderContent>
+    </HeaderWrapper>
   );
 };
-
-export default Header
