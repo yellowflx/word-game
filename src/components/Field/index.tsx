@@ -19,7 +19,7 @@ export function Field() {
         {words.slice(0, 7).map((value, index) =>
           <WordRow word={value} key={index}/>
         )}
-        {!(words[6]) ? <CurrentWordRow word={currentWord}/> : console.log('Попытки закончились')}
+        {!(words[6]) ? <CurrentWordRow word={currentWord}/> : null}
         {empty.map((value, index) =>
           <WordRow word={value} key={index}/>
         )}

@@ -79,7 +79,7 @@ export const Keyboard = () => {
     <KeyboardWrapper>
       <Row>
         {keys1.map((key: string, index) =>
-          <Key data-key={key} key={index} color={missingLetters.has(key) ? "#3a3a3c" : ""}
+          <Key key={index} $color={missingLetters.has(key) ? "#3a3a3c" : ""}
                onClick={() => setLetter(key)}>
             {key}
           </Key>
@@ -89,7 +89,7 @@ export const Keyboard = () => {
       <Row>
         <Spacer $width="0.586"/>
         {keys2.map((key: string, index) =>
-          <Key data-key={key} key={index} color={missingLetters.has(key) ? "#3a3a3c" : ""}
+          <Key key={index} $color={missingLetters.has(key) ? "#3a3a3c" : ""}
                onClick={() => setLetter(key)}>
             {key}
           </Key>
@@ -98,16 +98,16 @@ export const Keyboard = () => {
       </Row>
 
       <Row>
-        <Key data-key="enter" $flex="1.5" onClick={() => enter()}>
+        <Key $flex="1.5" onClick={() => enter()}>
           enter
         </Key>
         {keys3.map((key: string, index) =>
-          <Key data-key={key} key={index} $color={missingLetters.has(key) ? "#3a3a3c" : ""}
+          <Key key={index} $color={missingLetters.has(key) ? "#3a3a3c" : ""}
                onClick={() => setLetter(key)}>
             {key}
           </Key>
         )}
-        <Key data-key="backspace" $flex="1.5" onClick={() => clearLetter()}>
+        <Key $flex="1.5" onClick={() => clearLetter()}>
           <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 16 16"
                style={{backgroundColor: "#818384"}}>
             <path

@@ -8,7 +8,7 @@ export const Header = () => {
     <HeaderWrapper>
       <HeaderContent>
         <div>
-          <a href="https://github.com/YellowFLX/word-game" title="Исходный код (GitHub)" rel="noreferrer">
+          <a href="https://github.com/YellowFLX/word-game" title="Исходный код (GitHub)" target="_blank" rel="noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207
                 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729

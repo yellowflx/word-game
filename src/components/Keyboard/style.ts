@@ -27,7 +27,7 @@ export const Key = styled.button<{ $color?: string, $flex?: string }>`
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
-  background-color: ${props => props.color || "#818384"};
+  background-color: ${props => props.$color || "#818384"};
   color: #d7dadc;
   flex: ${props => props.$flex || 1};
   text-transform: uppercase;
