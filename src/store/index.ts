@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
-import {boardReducer} from "./redusers/board";
+import {boardReducer} from "./reducers/board";
 import {configureStore} from "@reduxjs/toolkit";
-import {loadState} from "./browser-storage";
-import {statsReducer} from "./redusers/stats";
+import {loadState} from "./localStorageSave";
+import {statsReducer} from "./reducers/stats";
 
 export const rootReducer = combineReducers({
   board: boardReducer,

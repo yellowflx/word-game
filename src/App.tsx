@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-import Field from "./components/Field";
-import Keyboard from "./components/Keyboard";
-import {useActions} from "./hooks/useAction";
 import {store} from "./store";
-import {debounce} from "debounce";
-import {saveState} from "./store/browser-storage";
+import {useActions} from "./hooks/useAction";
 import {useTypedSelector} from "./hooks/useTypedSelector";
-import Result from "./components/Result";
-import Stats from "./components/Stats";
+import {debounce} from "debounce";
+import {saveState} from "./store/localStorageSave";
 import {Slide, toast, ToastContainer} from 'react-toastify';
-import Header from "./components/Header";
+import {Header} from "./components/Header";
+import {Stats} from "./components/Stats";
+import {Field} from "./components/Field";
+import {Keyboard} from "./components/Keyboard";
+import {Result} from "./components/Result";
 
 export const wordsList = require('./json/ruWords.json')
 
@@ -21,7 +21,7 @@ export const notify = (text: string) => toast.warn(text, {
   transition: Slide
 });
 
-function App() {
+export function App() {
   const {setSolution, resetState, toggleStats} = useActions()
 
   let status = useTypedSelector(store => store.board.status)
@@ -58,5 +58,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
