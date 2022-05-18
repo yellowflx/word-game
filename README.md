@@ -1,7 +1,7 @@
 # The analogue of the "WORDLE" in Russian
 
 - Go play the real Wordle [here](https://www.powerlanguage.co.uk/wordle/)
-- Try my version [here](https://ruword-game.herokuapp.com) (_it may take 1-2 minutes to start_)
+- Try my version [here](https://yellowflx.github.io/word-game/) (_it may take 1-2 minutes to start_)
 ---
 The challenge is to guess the word in 7 tries:
 - Each guess must be a valid 5-letter word. Hit the enter button to submit.
