@@ -7,7 +7,7 @@ export const ResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 export const Row = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const Row = styled.div`
   margin: 0 auto 8px;
   touch-action: manipulation;
   height: auto;
-`
+`;
 
 export const Letter = styled.button<{ $win?: boolean }>`
   font-size: 4vh;
@@ -27,11 +27,11 @@ export const Letter = styled.button<{ $win?: boolean }>`
   border-radius: 4px;
   cursor: default;
   user-select: none;
-  background-color: ${props => props.$win ? "#538d4e" : "#c33333"};
+  background-color: ${(props) => (props.$win ? "#538d4e" : "#c33333")};
   flex: 1;
   text-transform: uppercase;
-`
+`;
 
 export const Spacer = styled.div<{ $width?: string }>`
-  flex: ${props => props.$width || 1.5}
-`
+  flex: ${(props) => props.$width || 1.5};
+`;
