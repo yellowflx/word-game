@@ -1,6 +1,5 @@
 {
   "name": "word-game",
-  "homepage": "https://yellowflx.github.io/word-game/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

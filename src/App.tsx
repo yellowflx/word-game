@@ -52,7 +52,7 @@ export function App() {
       resetState();
       setSolution(newSolution);
     }
-  }, [number, toggleStats, store, resetState, setSolution]);
+  }, [number, toggleStats, resetState, setSolution]);
 
   return (
     <div className="App">
